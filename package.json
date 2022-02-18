@@ -21,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/repimark/wellis_backend/issues"
   },
-  "homepage": "https://github.com/repimark/wellis_backend#readme"
+  "homepage": "https://github.com/repimark/wellis_backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "mysql": "^2.18.1"
+  }
 }
