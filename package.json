@@ -1,0 +1,25 @@
+{
+  "name": "wellis_backend",
+  "version": "1.0.0",
+  "description": "backend for wellis ",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/repimark/wellis_backend.git"
+  },
+  "keywords": [
+    "backend",
+    "nodejs",
+    "sequlize",
+    "mysql"
+  ],
+  "author": "repitsmark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/repimark/wellis_backend/issues"
+  },
+  "homepage": "https://github.com/repimark/wellis_backend#readme"
+}
