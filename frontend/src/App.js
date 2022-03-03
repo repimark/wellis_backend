@@ -23,13 +23,20 @@ function App() {
   }, []);
 
   if (!jobs) return null;
-  const listOfJobs = jobs.map((job) => (
+  const listOfJobs = jobs.map((job, i) => (
     <>
-      <tr id={job.id} key={job.id}>
+      <tr key={job.id}>
+        <td>{i + 1}</td>
         <td>{job.jobName}</td>
         <td>{job.startDate}</td>
         <td>{job.endDate}</td>
-        <td>{job.jobStatus}</td>
+        <td>
+          {job.jobStatus == 1
+            ? "Aktív"
+            : job.jobStatus == 2
+            ? "Kész"
+            : "Lejárt"}
+        </td>
         <td>{job.createdBy}</td>
       </tr>
     </>
@@ -39,7 +46,19 @@ function App() {
       <h1>Jobs</h1>
       <AddNewUnit></AddNewUnit>
       <AddJob></AddJob>
-      <table>{listOfJobs}</table>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Megnevezés</th>
+            <th>Feladás dátuma</th>
+            <th>Lezárs dátuma</th>
+            <th>Állapot</th>
+            <th>Feladó</th>
+          </tr>
+        </thead>
+        <tbody>{listOfJobs}</tbody>
+      </table>
     </div>
   );
 }
