@@ -10,6 +10,11 @@ Express-server ami egy mysql adatbázishoz kapcsolódik!
 express_port: 2233  
 mysql_port: 3306  
 
+### FRONTEND
+React-framework  
+port
+: 8000  
+
 # TODOS !!
 
 ## FRONTEND
@@ -24,7 +29,7 @@ mysql_port: 3306
 
 ## BACKEND
 - [ ] dotenv használata és .env fájl elkészítése a változókhoz
-- 
+- [ ] ..
 
 
 # REDESIGN IDEAS !!
@@ -41,3 +46,6 @@ mysql_port: 3306
 # 3RD PARTY PACKAGES!!
 - ChartsJS
 - React-client-session
+
+
+# SOK SIKERT KÖCSÖG :joy:
