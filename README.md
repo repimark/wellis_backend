@@ -13,17 +13,17 @@ mysql_port: 3306
 # TODOS !!
 
 ## FRONTEND
-- [] API hívások elkészítése új fájlokba
-- [] API hívás implementációk 
-  - [] NewJobModal
-  - [] NewUnitModal
-  - [] JobList
-  - [] Units
+- [ ] API hívások elkészítése új fájlokba
+- [ ] API hívás implementációk 
+  - [ ] NewJobModal
+  - [ ] NewUnitModal
+  - [ ] JobList
+  - [ ] Units
   - ...
-- [] Login page és mechanizmus elkészítése
+- [ ] Login page és mechanizmus elkészítése
 
 ## BACKEND
-- [] dotenv használata és .env fájl elkészítése a változókhoz
+- [ ] dotenv használata és .env fájl elkészítése a változókhoz
 - 
 
 
