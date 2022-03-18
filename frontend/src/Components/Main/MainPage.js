@@ -1,10 +1,10 @@
 import React from "react";
 
-function Table() {
+const MainPage = () => {
     return (
         <>
-        
+            
         </>
     )
 }
-export default Table;
+export default MainPage;
