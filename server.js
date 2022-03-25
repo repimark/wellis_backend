@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
 
-app.post("/addunit", (req, res) => {
+app.post("/units/add", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.set("Access-Control-Allow-Origin", "*");
   let unit = { name: req.body.name };
@@ -37,7 +37,7 @@ app.post("/addunit", (req, res) => {
 app.post("/jobs/add", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.set("Access-Control-Allow-Origin", "*");
-    let job = { unitId: req.body.uid, jobName: req.body.name, startDate: req.body.sdate, jobStatus: req.body.status,  endDate: req.body.edate, createdBy: req.body.creator  };
+    let job = { unitId: req.body.uid, jobName: req.body.name, startDate: req.body.sdate, jobStatus: req.body.status,  endDate: req.body.edate, createdBy: req.body.creator};
     let sql = "INSERT INTO jobs SET ?";
     
     db.query(sql, job, (err) => {
@@ -59,7 +59,7 @@ app.get("/units", (req, res) => {
   });
 });
 app.get("/jobs", (req, res) => {
-  let sql = "SELECT * FROM jobs";
+  let sql = "SELECT * FROM jobs, units WHERE jobs.unitId = units.id ";
   db.query(sql, (err, results) => {
     if (err) {
       throw err;

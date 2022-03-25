@@ -1,6 +1,6 @@
 import React from "react";
 import Rows from "./Rows";
-import { ButtonGroup, Container, Table, Button } from "react-bootstrap";
+import { ButtonGroup, Container, Table, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import NewJobModal from "./Modals/NewJobModal";
 import NewUnitModal from "./Modals/NewUnitModal";
 
@@ -11,11 +11,11 @@ const JobsList = () => {
         style={{
           width: "100vw",
           height: "100vh",
-          backgroundColor: "#f6f9fc",
+          backgroundColor: "#121212",
           paddingTop: "20px",
         }}
       >
-        <h1>Keresések</h1>
+        <h1 style={{color: '#fefefe'}}>Keresések</h1>
         <ButtonGroup style={{ textAlign: "left", left: '0px', display: 'block' }}>
           <NewJobModal></NewJobModal>
           <NewUnitModal></NewUnitModal>
@@ -32,8 +32,11 @@ const JobsList = () => {
             <tr>
               <th>#</th>
               <th>Megnevezés</th>
-              <th>Feladás dátuma</th>
-              <th>Lezárs dátuma</th>
+              <th>Szervezeti egység</th>
+              <OverlayTrigger placement="top" overlay={<Tooltip>Keresési profil megadásának napja</Tooltip>}>
+                <th>Keresés kezdete</th>
+              </OverlayTrigger>
+              <th>Keresés lezárása</th>
               <th>Állapot</th>
               <th>Feladó</th>
               <th>Műveletek</th>

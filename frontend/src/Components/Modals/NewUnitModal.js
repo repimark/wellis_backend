@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import { Modal, Button, Form} from "react-bootstrap"
+import axios from "axios"
 function NewUnitModal() {
     const [show, setShow] = useState(false);
     const [unitName, setUnitName] = useState("");
@@ -8,8 +9,9 @@ function NewUnitModal() {
     const handleShow = () => setShow(true);
     const newUnit = () => {
         //Itt kell posttal küldeni az api felé a létrehozást ! 
-        console.log(`Unitname: ${unitName}`)
-        setShow(false)
+        //console.log(`Unitname: ${unitName}`)
+        let unit = {name: unitName}
+        axios.post("http://localhost:2233/units/add", unit).then(() => {setShow(false); alert("Done")})  
     }
   
     return (

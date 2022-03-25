@@ -1,55 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Component } from "react";
+import { Form } from "react-bootstrap";
 import JobsListRowDropDown from "./JobsListRowDropDown";
 
 function Rows() {
   //const [isLoaded, setIsLoaded] = useState(true);
   const [jobs, setJobs] = useState([]);
-  let data = [
-    {
-      id: 19,
-      unitId: 6,
-      jobName: "Termékbevezető mérnök",
-      startDate: "2021-01-14",
-      jobStatus: 1,
-      endDate: "2021-2-23",
-      createdBy: "sarosi-bagi.nikoletta",
-      comment: "Ez a dolgozó hamarosan fog belépni"
-    },
-    {
-      id: 20,
-      unitId: 22,
-      jobName: "Minőségügyi vezető",
-      startDate: "2021-02-04",
-      jobStatus: 1,
-      endDate: "2021-3-2",
-      createdBy: "sarosi-bagi.nikoletta",
-      comment: "Ez a dolgozó sosem fog belépni mert csincska"
-    }
-  ];
-  //   useEffect(() => {
-  //     const getData = async () => {
-  //       fetch("http://localhost:2233/jobs")
-  //         .then((res) => res.json())
-  //         .then((result) => {
-  //           console.log(result);
-  //           setJobs(result);
-  //           setIsLoaded(false);
-  //         })
-  //         .catch((err) => {
-  //           console.log(err);
-  //         });
-  //     }
-  //     getData()
-  //   }, []);
-  //setJobs(data)
-//   if (jobs === null) {
-//     setJobs(data);
-//   }
-  let allJobs = data.map((job, i) => (
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:2233/jobs")
+    .then((res) => res.json())
+    .then((response) => setJobs(response))
+}, [])
+
+let filteredData = jobs.filter((job) => {
+    //return Object.values(job).join('').toLowerCase().includes("levay.alina")
+    //console.log(job.createdBy.indexOf("levay.alina"))
+    return (
+    job.jobName.indexOf(search) > -1 ||       
+    job.startDate.indexOf(search) > -1 ||
+    job.endDate.indexOf(search) > -1 ||
+    job.createdBy.indexOf(search) > -1 
+    )
+})
+
+let allJobs = filteredData.map((job, i) => (
     <>
       <tr key={job.id}>
         <td>{i + 1}</td>
         <td>{job.jobName}</td>
+        <td>{job.name}</td>
         <td>{job.startDate}</td>
         <td>{job.endDate}</td>
         <td>
@@ -64,7 +44,17 @@ function Rows() {
       </tr>
     </>
   ));
-  return <>{allJobs}</>;
+
+  return (
+    <>
+    <tr>
+        <td colSpan="8">
+            <Form.Control onChange={e => setSearch(e.target.value)}></Form.Control>
+        </td>
+    </tr>
+    {allJobs}
+    </>
+    );
 }
 
 export default Rows;

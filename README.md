@@ -24,12 +24,19 @@ port
   - [ ] NewUnitModal
   - [ ] JobList
   - [ ] Units
-  - ...
+  - [ ] Megjegyzésekhez is kell!!
 - [ ] Login page és mechanizmus elkészítése
 
 ## BACKEND
 - [ ] dotenv használata és .env fájl elkészítése a változókhoz
 - [ ] ..
+
+## DATABASE
+
+- [ ] Létre kell hozzak 2 plusz táblát : - tags, tags_search  
+- TAGS: t_id, t_name
+
+
 
 
 # REDESIGN IDEAS !!

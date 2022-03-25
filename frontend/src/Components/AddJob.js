@@ -7,6 +7,7 @@ const AddJob = () => {
   const [sdate, setSdate] = useState(null);
   const getUnits = () => {};
   return (
+    //szerintem ez nincs használatban !! 
     <>
       <div>
         <Form.Group className="mb-3 w-50">
