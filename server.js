@@ -37,10 +37,11 @@ app.post("/units/add", (req, res) => {
 app.post("/jobs/add", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.set("Access-Control-Allow-Origin", "*");
+    console.log(req)
     let job = { unitId: req.body.uid, jobName: req.body.name, startDate: req.body.sdate, jobStatus: req.body.status,  endDate: req.body.edate, createdBy: req.body.creator};
-    let sql = "INSERT INTO jobs SET ?";
-    
-    db.query(sql, job, (err) => {
+    let sql = `INSERT INTO jobs (id, unitId, jobName, startDate, jobStatus, endDate, createdBy) VALUES (NULL, '${req.body.unitId}', '${req.body.jobName}', '${req.body.startDate}', '${req.body.jobStatus}', '${req.body.endDate}', '${req.body.createdBy}')`;
+    console.log(job)
+    db.query(sql, (err) => {
       if (err) {
         throw err;
       }
@@ -59,7 +60,7 @@ app.get("/units", (req, res) => {
   });
 });
 app.get("/jobs", (req, res) => {
-  let sql = "SELECT * FROM jobs, units WHERE jobs.unitId = units.id ";
+  let sql = "SELECT jobs.id, jobs.jobName, units.name, jobs.startDate, jobs.jobStatus, jobs.endDate, jobs.createdBy, jobs.comment FROM jobs, units WHERE jobs.unitId = units.id ";
   db.query(sql, (err, results) => {
     if (err) {
       throw err;
@@ -88,6 +89,37 @@ app.post("/unit/add", (req, res) => {
   console.log(`${req}`);
   res.status(200).json(`${req.body.name}`);
 });
+
+app.post("/jobs/del", (req, res) => {
+  let sql = `DELETE FROM jobs WHERE id = ${req.body.jobId}`
+  db.query(sql, (err) => {
+    if(err){
+      throw err;
+    }
+    res.status(200).send("OK")
+  })
+})
+
+app.post("/jobs/done", (req, res) => {
+  let sql = `UPDATE jobs SET jobStatus = '2' WHERE id = ${req.body.jobId}`
+  console.log(sql)
+  db.query(sql, (err) => {
+    if(err){
+      throw err;
+    }
+    res.status(200).send("OK")
+  })
+})
+app.post("/jobs/comment", (req, res) => {
+  let sql = `UPDATE jobs SET comment = '${req.body.jobComment}' WHERE id = ${req.body.jobId}`
+  console.log(sql)
+  db.query(sql, (err) => {
+    if(err){
+      throw err;
+    }
+    res.status(200).send("OK")
+  })
+})
 
 app.listen(2233, () => {
   console.log("server started");

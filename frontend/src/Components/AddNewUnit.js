@@ -15,7 +15,7 @@ const AddNewUnit = () => {
         axios
           .post("http://localhost:2233/addunit", { name: unitName })
           .then((res) => {
-            res.status == 200 ? console.log("ok") : console.log("error");
+            res.status === 200 ? console.log("ok") : console.log("error");
             swal({
                 title: "Good job!",
                 text: "New unit added!",

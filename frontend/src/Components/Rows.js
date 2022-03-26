@@ -1,21 +1,27 @@
+import { set } from "express/lib/application";
 import React, { useEffect, useState, Component } from "react";
 import { Form } from "react-bootstrap";
 import JobsListRowDropDown from "./JobsListRowDropDown";
 
-function Rows() {
+function Rows(props) {
   //const [isLoaded, setIsLoaded] = useState(true);
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
-
-  useEffect(() => {
+  const [reload, setReload] = useState(false);
+  let stat = `${props.status}`
+  const getData = () => {
     fetch("http://localhost:2233/jobs")
     .then((res) => res.json())
     .then((response) => setJobs(response))
-}, [])
-
-let filteredData = jobs.filter((job) => {
-    //return Object.values(job).join('').toLowerCase().includes("levay.alina")
-    //console.log(job.createdBy.indexOf("levay.alina"))
+  }
+  useEffect(() => {
+    getData()
+    setReload(!reload)
+}, reload)
+let firstfilter = jobs.filter((job) => {
+    return job.jobStatus === `${stat}`
+})
+let filteredData = firstfilter.filter((job) => {
     return (
     job.jobName.indexOf(search) > -1 ||       
     job.startDate.indexOf(search) > -1 ||
@@ -40,14 +46,14 @@ let allJobs = filteredData.map((job, i) => (
             : "Lejárt"}
         </td>
         <td>{job.createdBy}</td>
-        <td><JobsListRowDropDown id={job.id} comment={job.comment}/></td>
+        <td><JobsListRowDropDown refreshFunction={() => setReload()} id={job.id} comment={job.comment}/></td>
       </tr>
     </>
   ));
 
   return (
     <>
-    <tr>
+    <tr key="0">
         <td colSpan="8">
             <Form.Control onChange={e => setSearch(e.target.value)}></Form.Control>
         </td>

@@ -58,7 +58,7 @@ const Units = () => {
   }, []);
 
   const listOfUnits = units.map((unit) => {
-    if (units == null) {
+    if (units === null) {
       return null;
     } else {
       return <option key={unit.id}>{unit.name}</option>;
