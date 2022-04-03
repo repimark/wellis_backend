@@ -15,6 +15,7 @@ function AddCommentModal(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
   const addComment = () => {
     //Itt kell posttal küldeni az api felé a létrehozást !
     //console.log(`Unitname: ${unitName}`)

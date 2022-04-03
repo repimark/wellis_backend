@@ -13,8 +13,9 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import AddCommentModal from "./Modals/AddCommentModal";
+import JobDoneModal from "./Modals/JobDoneModal";
 
-function JobsListRowDropDown(props) {
+function JobsListRowDropDown({refreshFunction, id ,comment}) {
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
   const [commentText, setCommentText] = useState("");
@@ -46,18 +47,22 @@ function JobsListRowDropDown(props) {
         axios
           .post("http://localhost:2233/jobs/del", { jobId: id })
           .then((res) => console.log(`RESPONSE : ${res.data}`))
-          .then(() => props.refreshFunction);
+          .then(() => refreshFunction());
           //props.refreshFunction()
-          props.refreshFunction(true)
+          //refreshFunction(true)
       } else {
         swal("Huh! Visszavontad a törlést!");
       }
     });
   };
   const jobDone = (id) => {
-    console.log(`készre kívánt állítani cucc : ${id}`);
-    axios.post("http://localhost:2233/jobs/done", {"jobId": id}).then(() => {swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); props.refreshFunction(true);})
+    //console.log(`készre kívánt állítani cucc : ${id}`);
+    //axios.post("http://localhost:2233/jobs/done", {"jobId": id}).then(() => {swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); refreshFunction(true);})
   };
+  const undoJob = (id) => {
+    console.log(`Visszavonni kívánt keresés : ${id}`)
+    axios.post("http://localhost:2233/jobs/undo", {"jobId": id}).then(() => {swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); refreshFunction(true);})
+  }
   return (
     <>
       <ButtonGroup>
@@ -69,21 +74,24 @@ function JobsListRowDropDown(props) {
           >
             ...
           </Dropdown.Toggle>
-
+    
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => jobDone(props.id)}>
-              Készre jelent ({props.id})
+            <Dropdown.Item>
+              <JobDoneModal jobId={id} refresh={refreshFunction}/>
             </Dropdown.Item>
-            <Dropdown.Item onClick={() => deleteRow(props.id)}>
-              Törlés (Visszavonás)
+            <Dropdown.Item onClick={() => deleteRow(id)}>
+              Törlés
             </Dropdown.Item>
-            <Dropdown.Item href="/jobs">
-              Nem törlés és nem is kész.
+            <Dropdown.Item>
+              Szerkesztés
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => undoJob(id)}>
+              Visszavonás
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 
-          <AddCommentModal id={props.id} refresh={props.refreshFunction()} actualComment={props.comment}/>
+          <AddCommentModal id={id} refresh={refreshFunction} actualComment={comment}/>
 
       </ButtonGroup>
       <Overlay
@@ -104,7 +112,7 @@ function JobsListRowDropDown(props) {
               type="text"
               id="commentText"
             />
-            <Button id={props.id} onClick={(e) => addComment(e, props.id)}>
+            <Button id={id} onClick={(e) => addComment(e, id)}>
               Hozzáadás
             </Button>
           </Popover.Body>

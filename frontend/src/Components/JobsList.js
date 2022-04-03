@@ -8,7 +8,7 @@ import {
   OverlayTrigger,
   Tooltip,
   Tabs,
-  Tab
+  Tab,
 } from "react-bootstrap";
 import NewJobModal from "./Modals/NewJobModal";
 import NewUnitModal from "./Modals/NewUnitModal";
@@ -29,7 +29,7 @@ const JobsList = () => {
           style={{ textAlign: "left", left: "0px", display: "block" }}
         >
           <NewJobModal></NewJobModal>
-          <NewUnitModal></NewUnitModal>
+          {/* <NewUnitModal></NewUnitModal> */}
         </ButtonGroup>
         {/* <Table
           style={{ width: "80vw" }}
@@ -60,11 +60,7 @@ const JobsList = () => {
             <Rows />
           </tbody>
         </Table> */}
-        <Tabs
-          defaultActiveKey="active"
-          id=""
-          className="mb-3"
-        >
+        <Tabs defaultActiveKey="active" id="" className="mb-3">
           <Tab eventKey="active" title="Aktív">
             <Table
               style={{ width: "65vw" }}
@@ -87,20 +83,25 @@ const JobsList = () => {
                   >
                     <th>Keresés kezdete</th>
                   </OverlayTrigger>
-                  <th>Keresés lezárása</th>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip>Az ajánlat elfogadásának dátuma</Tooltip>}
+                  >
+                    <th>Keresés lezárása</th>
+                  </OverlayTrigger>
                   <th>Állapot</th>
                   <th>Feladó</th>
                   <th>Műveletek</th>
                 </tr>
               </thead>
               <tbody>
-                <Rows status="1"/>
+                <Rows status="0" />
               </tbody>
             </Table>
           </Tab>
           <Tab eventKey="done" title="Kész">
             <Table
-              style={{ width: "80vw" }}
+              style={{ width: "65vw" }}
               striped
               bordered
               hover
@@ -120,20 +121,25 @@ const JobsList = () => {
                   >
                     <th>Keresés kezdete</th>
                   </OverlayTrigger>
-                  <th>Keresés lezárása</th>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip>Az ajánlat elfogadásának dátuma</Tooltip>}
+                  >
+                    <th>Keresés lezárása</th>
+                  </OverlayTrigger>
                   <th>Állapot</th>
                   <th>Feladó</th>
                   <th>Műveletek</th>
                 </tr>
               </thead>
               <tbody>
-                <Rows status="2"/>
+                <Rows status="1" />
               </tbody>
             </Table>
           </Tab>
           <Tab eventKey="expired" title="Lejárt">
             <Table
-              style={{ width: "80vw" }}
+              style={{ width: "65vw" }}
               striped
               bordered
               hover
@@ -153,7 +159,51 @@ const JobsList = () => {
                   >
                     <th>Keresés kezdete</th>
                   </OverlayTrigger>
-                  <th>Keresés lezárása</th>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip>Az ajánlat elfogadásának dátuma</Tooltip>}
+                  >
+                    <th>Keresés lezárása</th>
+                  </OverlayTrigger>
+
+                  <th>Állapot</th>
+                  <th>Feladó</th>
+                  <th>Műveletek</th>
+                </tr>
+              </thead>
+              <tbody>
+                <Rows status="2" />
+              </tbody>
+            </Table>
+          </Tab>
+          <Tab eventKey="" title="Visszavont">
+            <Table
+              style={{ width: "65vw" }}
+              striped
+              bordered
+              hover
+              size="sm"
+              variant="dark"
+            >
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Megnevezés</th>
+                  <th>Szervezeti egység</th>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip>Keresési profil megadásának napja</Tooltip>
+                    }
+                  >
+                    <th>Keresés kezdete</th>
+                  </OverlayTrigger>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip>Az ajánlat elfogadásának dátuma</Tooltip>}
+                  >
+                    <th>Keresés lezárása</th>
+                  </OverlayTrigger>
                   <th>Állapot</th>
                   <th>Feladó</th>
                   <th>Műveletek</th>

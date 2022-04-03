@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./Components/Main";
 import Menu from "./Components/Main/Navbar";
 import JobsList from "./Components/JobsList";
+import Pivot from "./Components/Main/Pivot";
 
 function App() {
   ReactSession.set("username", "repimark");
@@ -17,7 +18,8 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main/>}/>
-        <Route path="/jobs" element={<JobsList/>}/>  
+        <Route path="/jobs" element={<JobsList/>}/>
+        <Route path="/pivot"  element={<Pivot/>}/>
       </Routes>
       </BrowserRouter>
     </div>

@@ -33,7 +33,15 @@ app.post("/units/add", (req, res) => {
     res.send("OK - {unit}").status(200);
   });
 });
-
+app.post("/units/delete", (req,res) => {
+  let sql = `DELETE FROM units WHERE id = '${req.body.unitId}'`
+  db.query(sql, (err) => {
+    if(err){
+      throw err;
+    }
+    res.status(200).send("OK");
+  })
+})
 app.post("/jobs/add", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.set("Access-Control-Allow-Origin", "*");
@@ -101,7 +109,9 @@ app.post("/jobs/del", (req, res) => {
 })
 
 app.post("/jobs/done", (req, res) => {
-  let sql = `UPDATE jobs SET jobStatus = '2' WHERE id = ${req.body.jobId}`
+  let date = new Date()
+  let currentDate = date.toISOString().split("T")[0]
+  let sql = `UPDATE jobs SET jobStatus = '1', endDate='${currentDate}', comment="${req.body.comment}" WHERE id = ${req.body.jobId};`
   console.log(sql)
   db.query(sql, (err) => {
     if(err){
@@ -118,6 +128,46 @@ app.post("/jobs/comment", (req, res) => {
       throw err;
     }
     res.status(200).send("OK")
+  })
+})
+
+app.post("/jobs/undo", (req,res) => {
+  let sql = `UPDATE jobs SET jobStatus = '3' WHERE id = ${req.body.jobId}`
+  db.query(sql, (err) => {
+    if(err){
+      throw err;
+    }
+    res.status(200).send("OK")
+  })
+})
+
+app.get("/users", (req,res) => {
+  let sql = `SELECT * FROM users`
+  db.query(sql, (err, results) => {
+    if(err){
+      throw err;
+    }
+    res.status(200).json(results)
+  })
+})
+
+app.post("/jobs/analitics/jobs/done", (req,res) => {
+  let sql = `SELECT COUNT(jobName) AS 'done' FROM jobs WHERE YEAR(endDate) = YEAR("${req.body.date}") AND createdBy = "${req.body.creator}";`
+  db.query(sql, (err, results) => {
+    if(err){
+      throw err;
+    }
+    res.status(200).json(results)
+  })
+})
+
+app.post("/jobs/analitics/jobs/active", (req, res) => {
+  let sql = `SELECT COUNT(jobName) AS active FROM jobs WHERE createdBy="${req.body.creator}" AND jobStatus=0`
+  db.query(sql, (err, results) => {
+    if(err){
+      throw err;
+    }
+    res.status(200).json(results)
   })
 })
 

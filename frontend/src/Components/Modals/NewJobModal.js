@@ -34,6 +34,7 @@ function NewJobModal() {
       jobStatus: state,
       endDate: endDate,
       createdBy: user,
+      comment: ""
     };
     axios.post("http://localhost:2233/jobs/add", job).then(() => alert("Done"));
     setShow(false);
@@ -72,21 +73,6 @@ function NewJobModal() {
               onChange={(e) => setStartDate(e.target.value)}
             ></Form.Control>
           </FloatingLabel>
-
-          <FloatingLabel label="Vége">
-            <Form.Control
-              className="mb-2"
-              placeholder="Vége"
-              onChange={(e) => setEndDate(e.target.value)}
-            ></Form.Control>
-          </FloatingLabel>
-
-          <Form.Select onChange={(e) => setState(e.target.value)}>
-            <option value="0">Állapot</option>
-            <option value="1">Aktív</option>
-            <option value="2">Kész</option>
-            <option value="3">Lejárt</option>
-          </Form.Select>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-danger" onClick={handleClose}>
