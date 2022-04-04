@@ -47,7 +47,7 @@ app.post("/jobs/add", (req, res) => {
     res.set("Access-Control-Allow-Origin", "*");
     console.log(req)
     let job = { unitId: req.body.uid, jobName: req.body.name, startDate: req.body.sdate, jobStatus: req.body.status,  endDate: req.body.edate, createdBy: req.body.creator};
-    let sql = `INSERT INTO jobs (id, unitId, jobName, startDate, jobStatus, endDate, createdBy) VALUES (NULL, '${req.body.unitId}', '${req.body.jobName}', '${req.body.startDate}', '${req.body.jobStatus}', '${req.body.endDate}', '${req.body.createdBy}')`;
+    let sql = `INSERT INTO jobs (id, unitId, jobName, startDate, jobStatus, endDate, createdBy, comment) VALUES (NULL, '${req.body.unitId}', '${req.body.jobName}', '${req.body.startDate}', '0', '', '${req.body.createdBy}', '')`;
     console.log(job)
     db.query(sql, (err) => {
       if (err) {
@@ -163,6 +163,16 @@ app.post("/jobs/analitics/jobs/done", (req,res) => {
 
 app.post("/jobs/analitics/jobs/active", (req, res) => {
   let sql = `SELECT COUNT(jobName) AS active FROM jobs WHERE createdBy="${req.body.creator}" AND jobStatus=0`
+  db.query(sql, (err, results) => {
+    if(err){
+      throw err;
+    }
+    res.status(200).json(results)
+  })
+})
+
+app.get("/analitics/1", (req,res) => {
+  let sql = `SELECT jobs.jobStatus, units.name,COUNT(jobs.jobName) AS pc FROM jobs, units WHERE jobs.unitId = units.id GROUP BY jobs.jobStatus, units.name`;
   db.query(sql, (err, results) => {
     if(err){
       throw err;

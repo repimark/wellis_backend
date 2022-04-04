@@ -24,12 +24,26 @@ function NewUnitModal() {
       .then((data) => setUnits(data));
   };
   const deleteUnit = (id) => {
-    axios
+    swal({
+      title: "Biztosan törölni szeretnéd?",
+      text: "A törlés visszavonhatatlan!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        axios
       .post("http://localhost:2233/units/delete", { unitId: id })
-      .then((res) => {
-        swal("success", `${res}`, "success")
+      .then(() => {
+        swal("Sikeresen törölted!", "Szervezeti egység törölve." , "success")
         getUnits()
       });
+      } else {
+        swal("Oksa!");
+      }
+    });
+   
   };
   useEffect(() => {
     getUnits();

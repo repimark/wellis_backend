@@ -13,7 +13,7 @@ function JobDoneModal(props) {
         //Itt kell posttal küldeni az api felé a létrehozást ! 
         //console.log(`Unitname: ${unitName}`)
         let unit = {jobId: props.jobId, comment: comment}
-        axios.post("http://localhost:2233/jobs/done", unit).then(() => {setShow(false); swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); props.refresh(true);})  
+        axios.post("http://localhost:2233/jobs/done", unit).then(() => {setShow(false); swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); props.refresh();})  
     }
   
     return (

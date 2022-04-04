@@ -47,7 +47,7 @@ function JobsListRowDropDown({refreshFunction, id ,comment}) {
         axios
           .post("http://localhost:2233/jobs/del", { jobId: id })
           .then((res) => console.log(`RESPONSE : ${res.data}`))
-          .then(() => refreshFunction());
+          .then(() => refreshFunction(true));
           //props.refreshFunction()
           //refreshFunction(true)
       } else {
@@ -61,7 +61,7 @@ function JobsListRowDropDown({refreshFunction, id ,comment}) {
   };
   const undoJob = (id) => {
     console.log(`Visszavonni kívánt keresés : ${id}`)
-    axios.post("http://localhost:2233/jobs/undo", {"jobId": id}).then(() => {swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); refreshFunction(true);})
+    axios.post("http://localhost:2233/jobs/undo", {"jobId": id}).then(() => {swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); refreshFunction();})
   }
   return (
     <>

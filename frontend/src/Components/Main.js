@@ -42,7 +42,7 @@ const Main = () => {
   return (
     <>
       <Container style={{ width: "90vw" }}>
-        <h1 style={{color:"white"}}>Pokemonok munkásságai</h1>
+        <h1 style={{color:"white"}}>Dolgozói statisztikák</h1>
         <Row md={2} lg={3} xs={1} className="g-4">
         {listOfusers}
         </Row>
