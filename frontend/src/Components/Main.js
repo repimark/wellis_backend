@@ -7,13 +7,16 @@ import logo from "../logo.svg";
 import { ReactSession } from "react-client-session";
 import ActiveJobs from "./DataComponent/ActiveJobs";
 import DoneJobs from "./DataComponent/DoneJobs";
+import swal from "sweetalert";
+import { propTypes } from "react-bootstrap/esm/Image";
 
-const Main = () => {
+const Main = (props) => {
   const [users, setUsers] = useState([]);
   const getUsers = () => {
     fetch("http://localhost:2233/users")
       .then((response) => response.json())
-      .then((data) => setUsers(data));
+      .then((data) => setUsers(data))
+      .catch((err) => swal(`A következő hiba történt! : ${err}`));
   };
   let listOfusers = users.map((user) => (
     <>
@@ -41,6 +44,7 @@ const Main = () => {
   }, []);
   return (
     <>
+    {props.children}
       <Container style={{ width: "90vw" }}>
         <h1 style={{color:"white"}}>Dolgozói statisztikák</h1>
         <Row md={2} lg={3} xs={1} className="g-4">

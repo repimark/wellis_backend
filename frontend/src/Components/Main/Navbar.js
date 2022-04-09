@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import "./css/Menu.css";
 import { ReactSession } from "react-client-session";
 import NewUnitModal from "../Modals/NewUnitModal";
@@ -15,8 +14,8 @@ const Menu = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/jobs?c=">Keresések</Nav.Link>
-              <Nav.Link href="/pivot">Kimutatások</Nav.Link>
-              <Nav.Link href="">Lekérdezések</Nav.Link>
+              <Nav.Link href="">Kimutatások</Nav.Link>
+              <Nav.Link href="/pivot">Lekérdezések</Nav.Link>
               {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
@@ -32,17 +31,12 @@ const Menu = () => {
               </NavDropdown> */}
             </Nav>
             <Nav>
-              
-              <NavDropdown title="" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="">
-                  Jogosultságok
-                </NavDropdown.Item>
+              <NavDropdown title="" drop={"start"} id="collasible-nav-dropdown">
+                <NavDropdown.Item href="">Jogosultságok</NavDropdown.Item>
                 <NavDropdown.Item>
-                  <NewUnitModal/>
+                  <NewUnitModal />
                 </NavDropdown.Item>
-                <NavDropdown.Item href="">
-                  Kijelentkezés
-                </NavDropdown.Item>
+                <NavDropdown.Item href="">Kijelentkezés</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link>{ReactSession.get("username")}</Nav.Link>
             </Nav>

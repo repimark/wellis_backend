@@ -29,7 +29,7 @@ function AddCommentModal(props) {
         "success"
       );
       props.refresh(true)
-    });
+    }).catch((err) => swal(`A következő hiba történt! : ${err}`));
   };
 
   return (

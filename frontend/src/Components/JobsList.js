@@ -13,9 +13,10 @@ import {
 import NewJobModal from "./Modals/NewJobModal";
 import NewUnitModal from "./Modals/NewUnitModal";
 
-const JobsList = () => {
+const JobsList = (props) => {
   return (
     <>
+    {props.children}
       <Container
         style={{
           width: "100vw",
@@ -29,41 +30,12 @@ const JobsList = () => {
           style={{ textAlign: "left", left: "0px", display: "block" }}
         >
           <NewJobModal></NewJobModal>
-          {/* <NewUnitModal></NewUnitModal> */}
         </ButtonGroup>
-        {/* <Table
-          style={{ width: "80vw" }}
-          striped
-          bordered
-          hover
-          size="sm"
-          variant="dark"
-        >
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Megnevezés</th>
-              <th>Szervezeti egység</th>
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip>Keresési profil megadásának napja</Tooltip>}
-              >
-                <th>Keresés kezdete</th>
-              </OverlayTrigger>
-              <th>Keresés lezárása</th>
-              <th>Állapot</th>
-              <th>Feladó</th>
-              <th>Műveletek</th>
-            </tr>
-          </thead>
-          <tbody>
-            <Rows />
-          </tbody>
-        </Table> */}
+        
         <Tabs defaultActiveKey="active" id="" className="mb-3">
           <Tab eventKey="active" title="Aktív">
             <Table
-              style={{ width: "65vw" }}
+              style={{ width: "85vw" }}
               striped
               bordered
               hover
@@ -101,7 +73,7 @@ const JobsList = () => {
           </Tab>
           <Tab eventKey="done" title="Kész">
             <Table
-              style={{ width: "65vw" }}
+              style={{ width: "85vw" }}
               striped
               bordered
               hover
@@ -137,48 +109,9 @@ const JobsList = () => {
               </tbody>
             </Table>
           </Tab>
-          <Tab eventKey="expired" title="Lejárt">
-            <Table
-              style={{ width: "65vw" }}
-              striped
-              bordered
-              hover
-              size="sm"
-              variant="dark"
-            >
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Megnevezés</th>
-                  <th>Szervezeti egység</th>
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={
-                      <Tooltip>Keresési profil megadásának napja</Tooltip>
-                    }
-                  >
-                    <th>Keresés kezdete</th>
-                  </OverlayTrigger>
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={<Tooltip>Az ajánlat elfogadásának dátuma</Tooltip>}
-                  >
-                    <th>Keresés lezárása</th>
-                  </OverlayTrigger>
-
-                  <th>Állapot</th>
-                  <th>Feladó</th>
-                  <th>Műveletek</th>
-                </tr>
-              </thead>
-              <tbody>
-                <Rows status="2" />
-              </tbody>
-            </Table>
-          </Tab>
           <Tab eventKey="" title="Visszavont">
             <Table
-              style={{ width: "65vw" }}
+              style={{ width: "85vw" }}
               striped
               bordered
               hover

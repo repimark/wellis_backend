@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
+import swal from "sweetalert"
 
 function FetchUnits() {
-  const [units, setUnits] = useState([])
+  const [units, setUnits] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:2233/units").then((response) => response.json()).then(res => setUnits(res));
+    fetch("http://localhost:2233/units")
+      .then((response) => response.json())
+      .then((res) => setUnits(res))
+      .catch((err) => swal(`A következő hiba történt! : ${err}`));
   }, []);
-  if(!units){return <option>Nincsenek szervezeti egységek.</option>}
+  if (!units) {
+    return <option>Nincsenek szervezeti egységek.</option>;
+  }
   return (
     <>
-        {units.map(unit => (<option value={unit.id}>{unit.name}</option>))}
+      {units.map((unit) => (
+        <option value={unit.id}>{unit.name}</option>
+      ))}
     </>
   );
 }

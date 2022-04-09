@@ -162,7 +162,7 @@ app.post("/jobs/analitics/jobs/done", (req,res) => {
 })
 
 app.post("/jobs/analitics/jobs/active", (req, res) => {
-  let sql = `SELECT COUNT(jobName) AS active FROM jobs WHERE createdBy="${req.body.creator}" AND jobStatus=0`
+  let sql = `SELECT COUNT(jobName) AS 'active' FROM jobs WHERE createdBy="${req.body.creator}" AND jobStatus=0`
   db.query(sql, (err, results) => {
     if(err){
       throw err;
@@ -174,8 +174,52 @@ app.post("/jobs/analitics/jobs/active", (req, res) => {
 app.get("/analitics/1", (req,res) => {
   let sql = `SELECT jobs.jobStatus, units.name,COUNT(jobs.jobName) AS pc FROM jobs, units WHERE jobs.unitId = units.id GROUP BY jobs.jobStatus, units.name`;
   db.query(sql, (err, results) => {
+    err ? res.status(400).json(err) : res.status(200).json(results)
+  })
+})
+
+app.get("/analitics/2", (req, res) => {
+  let sql = "SELECT COUNT(jobName) AS pc, name FROM jobs, units WHERE jobs.unitId = units.id AND jobs.jobStatus = 0 GROUP BY name"
+  db.query(sql, (err,results) => {
     if(err){
-      throw err;
+      res.status(400).json(err)
+    }
+    res.status(200).json(results)
+  })
+})
+
+app.get("/analitics/3", (req, res) => {
+  let sql = "SELECT COUNT(jobName) AS pc, name FROM jobs, units WHERE jobs.unitId = units.id AND jobs.jobStatus = 1 GROUP BY name"
+  db.query(sql, (err,results) => {
+    if(err){
+      res.status(400).json(err)
+    }
+    res.status(200).json(results)
+  })
+})
+app.get("/analitics/4", (req, res) => {
+  let sql = "SELECT COUNT(jobName) AS pc, name FROM jobs, units WHERE jobs.unitId = units.id AND jobs.jobStatus = 3 GROUP BY name"
+  db.query(sql, (err,results) => {
+    if(err){
+      res.status(400).json(err)
+    }
+    res.status(200).json(results)
+  })
+})
+app.post("/analitics/by/date", (req, res) => {
+  let sql = `SELECT COUNT(jobName) AS pc, createdBy FROM jobs WHERE MONTH(endDate) > MONTH('${req.body.date}') AND YEAR(endDate) = YEAR('${req.body.date}') AND YEAR(endDate) = YEAR('${req.body.date}') AND MONTH(startDate) <= MONTH('${req.body.date}') GROUP BY createdBy;`
+  db.query(sql, (err,results) => {
+    if(err){
+      res.status(400).json(err)
+    }
+    res.status(200).json(results)
+  })
+})
+app.post("/analitics/by/month", (req, res) => {
+  let sql = `SELECT COUNT(jobName) AS pc, jobStatus FROM jobs WHERE jobStatus = 0 AND MONTH(startDate) <= MONTH('${req.body.date}') AND YEAR(startDate) = YEAR('${req.body.date}') OR jobStatus = 1 AND YEAR(endDate) = YEAR('${req.body.date}') GROUP BY jobStatus`
+  db.query(sql, (err,results) => {
+    if(err){
+      res.status(400).json(err)
     }
     res.status(200).json(results)
   })

@@ -13,15 +13,19 @@ function NewUnitModal() {
     //Itt kell posttal küldeni az api felé a létrehozást !
     //console.log(`Unitname: ${unitName}`)
     let unit = { name: unitName };
-    axios.post("http://localhost:2233/units/add", unit).then(() => {
-      setShow(false);
-      //swal()
-    });
+    axios
+      .post("http://localhost:2233/units/add", unit)
+      .then(() => {
+        setShow(false);
+        //swal()
+      })
+      .catch((err) => swal(`A következő hiba történt! : ${err}`));
   };
   const getUnits = () => {
     fetch("http://localhost:2233/units")
       .then((res) => res.json())
-      .then((data) => setUnits(data));
+      .then((data) => setUnits(data))
+      .catch((err) => swal(`A következő hiba történt! : ${err}`));
   };
   const deleteUnit = (id) => {
     swal({
@@ -30,20 +34,22 @@ function NewUnitModal() {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    })
-    .then((willDelete) => {
+    }).then((willDelete) => {
       if (willDelete) {
         axios
-      .post("http://localhost:2233/units/delete", { unitId: id })
-      .then(() => {
-        swal("Sikeresen törölted!", "Szervezeti egység törölve." , "success")
-        getUnits()
-      });
+          .post("http://localhost:2233/units/delete", { unitId: id })
+          .then(() => {
+            swal(
+              "Sikeresen törölted!",
+              "Szervezeti egység törölve.",
+              "success"
+            );
+            getUnits();
+          });
       } else {
         swal("Oksa!");
       }
     });
-   
   };
   useEffect(() => {
     getUnits();

@@ -3,6 +3,7 @@ import React, { useEffect, useState, Component } from "react";
 import { Form } from "react-bootstrap";
 import JobsListRowDropDown from "./JobsListRowDropDown";
 import { useLocation } from 'react-router-dom';
+import { TimeTillStart } from "./DataComponent/TimeTillStart" 
 
 function Rows(props) {
   //const [isLoaded, setIsLoaded] = useState(true);
@@ -65,14 +66,12 @@ let allJobs = filteredData.map((job, i) => (
         <td>{job.jobName}</td>
         <td>{job.unit}</td>
         <td>{job.startDate}</td>
-        <td>{job.endDate}</td>
+        <td>{TimeTillStart(job.startDate)}</td>
         <td>
           {job.jobStatus === 0
             ? "Aktív"
             : job.jobStatus === 1
             ? "Kész"
-            : job.jobStatus === 2
-            ? "Lejárt"
             : "Visszavont"}
         </td>
         <td>{job.createdBy}</td>

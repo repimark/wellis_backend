@@ -1,34 +1,40 @@
 import React, { useState } from "react";
-import { Button, Form, Card } from "react-bootstrap";
-import logo from "../../../src/logo.svg";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css"
+import { Button, Form, Card, Stack } from "react-bootstrap";
 import AnaliticByUnits from "../AnaliticComponent/AnaliticByUnits";
+import ActiveJobsPcByUnit from "../AnaliticComponent/ActiveJobsPcByUnit";
+import DoneJobsPcByUnit from "../AnaliticComponent/DoneJobsPcByUnits";
+import UndoedJobsPcByUnit from "../AnaliticComponent/UndoedJobsPcByUnit";
+import JobsByDateAndCreator from "../AnaliticComponent/JobsByDateAndCreator";
+import ActiveAndClosedByTheMonth from "../AnaliticComponent/ActiveAndClosedByTheMonth";
 
-const Pivot = () => {
-  const [startDate, setStartDate] = useState(new Date());
+const Pivot = (props) => {
   return (
-    <div style={{color:"whitesmoke"}}>
-      <h1>Kimutatások</h1>
-      <DatePicker
-        dateFormat="yyyy-MM-dd"
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-      />
-      //Idek erül a kimutatás a darabszámos (dátumra)!
-      <h2>Bizonyos honap(ok) aktív kereséseinek darabszáma személyenként</h2>
-      
-      <Button>Lekérdezés</Button>
-      <p>Lekérdezés eredménye</p>
-      <h2>
-        Aktuális hónap aktív és lejárt kereséseinek kilistázása plusz adott
-        évben lezárt keresések összesen.
-      </h2>
-      <h2>
-        Ide kerülnek szervezeti egységenként az kész / aktív / lejárt keresések{" "}
-      </h2>
-      <AnaliticByUnits />
-    </div>
+    <>
+      {props.children}
+      <div style={{ color: "whitesmoke" }}>
+        <h1>Kimutatások</h1>
+        <JobsByDateAndCreator />
+        <h3>
+          Aktuális hónap aktív kereséseinek kilistázása plusz adott
+          évben lezárt keresések összesen.
+        </h3>
+        <ActiveAndClosedByTheMonth/>
+        <h2>Területenkénti keresések</h2>
+        <Stack
+          direction="horizontal"
+          gap={0}
+          className="ms-auto"
+          style={{ display: "-webkit-inline-box"}}
+        >
+          <Stack direction="vertical" gap={0}>
+            <ActiveJobsPcByUnit />
+            <UndoedJobsPcByUnit />
+          </Stack>
+          <DoneJobsPcByUnit />
+        </Stack>
+        {/* <AnaliticByUnits /> */}
+      </div>
+    </>
   );
 };
 

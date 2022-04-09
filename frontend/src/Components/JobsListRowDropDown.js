@@ -28,7 +28,7 @@ function JobsListRowDropDown({refreshFunction, id ,comment}) {
   const addComment = (event, id) => {
     console.log(commentText + " | " + id);
     //Itt kell meghívni a comment felülíró részt !
-    axios.post('http://localhost:2233/jobs/comment', {jobId: id, jobComment: commentText}).then(() => swal("Done //TODO!!!"))
+    axios.post('http://localhost:2233/jobs/comment', {jobId: id, jobComment: commentText}).then(() => swal("Done //TODO!!!").catch((err) => swal(`A következő hiba történt! : ${err}`)))
     setShow(!show);
   };
   const deleteRow = (id) => {
@@ -61,7 +61,7 @@ function JobsListRowDropDown({refreshFunction, id ,comment}) {
   };
   const undoJob = (id) => {
     console.log(`Visszavonni kívánt keresés : ${id}`)
-    axios.post("http://localhost:2233/jobs/undo", {"jobId": id}).then(() => {swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); refreshFunction();})
+    axios.post("http://localhost:2233/jobs/undo", {"jobId": id}).then(() => {swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); refreshFunction();}).catch((err) => swal(`A következő hiba történt! : ${err}`))
   }
   return (
     <>
