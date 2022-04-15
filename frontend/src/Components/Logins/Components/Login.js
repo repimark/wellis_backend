@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   Button,
   ButtonGroup,
@@ -8,8 +9,30 @@ import {
   FormControl,
   FloatingLabel,
 } from "react-bootstrap";
+import swal from "sweetalert";
+import { LoginController } from "../Controllers/LoginController";
+import { ReactSession } from "react-client-session";
+import { useLocation, useNavigate } from "react-router-dom";
+import { setSession } from "../Controllers/Session";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state.from.pathname || "/";
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const LoginHandler = async () => {
+    let resp = await LoginController(username, password);
+    console.log(resp);
+    (await resp) === "Sikertelen bejelentkezés"
+      ? swal("Sikertelen bejelentkezés!")
+      : setAuth({ username:resp.username});
+      sessionStorage.setItem("user", JSON.stringify(resp))
+      navigate("/");
+  };
   return (
     <>
       <Container>
@@ -19,12 +42,18 @@ const Login = () => {
             <Form style={{ width: "40vw", height: "50vh" }}>
               <h2>Bejelentkezés</h2>
               <FloatingLabel label="Felhasználónév" className="mb-3">
-                <Form.Control placeholder="Felhasználónév"></Form.Control>
+                <Form.Control
+                  placeholder="Felhasználónév"
+                  onChange={(e) => setUsername(e.target.value)}
+                ></Form.Control>
               </FloatingLabel>
               <FloatingLabel label="Jelszó" className="mb-3">
-                <Form.Control placeholder="Jelszó" />
+                <Form.Control
+                  placeholder="Jelszó"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </FloatingLabel>
-                <Button>Bejelentkezés</Button>
+              <Button onClick={(e) => LoginHandler()}>Bejelentkezés</Button>
             </Form>
           </div>
           <div className="" style={{ width: "40vw", color: "white" }}>

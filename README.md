@@ -89,3 +89,4 @@ Megfelelő filterezés kereső mezőben pl.: end:2021; start:2020
 - Adj hozzá egy .env fájl-t ami tartalmazza majd az API URL-t mert az a kérsőbbiekben kelleni fog majd !! 
 - Új szervezeti egység gomb padding 0px !
 # SOK SIKERT KÖCSÖG :joy:
+- Legyen egy kimutatás minden ember profiljába arról, hogy hány napja megy a keresés (oszlop diagram)

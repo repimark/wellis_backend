@@ -68,7 +68,7 @@ function NewUnitModal() {
 
   return (
     <>
-      <Button variant="" onClick={handleShow}>
+      <Button variant="" style={{padding: "0px"}} onClick={handleShow}>
         Új szervezeti egység
       </Button>
 

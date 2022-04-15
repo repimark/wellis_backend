@@ -4,9 +4,11 @@ import { Form } from "react-bootstrap";
 import JobsListRowDropDown from "./JobsListRowDropDown";
 import { useLocation } from 'react-router-dom';
 import { TimeTillStart } from "./DataComponent/TimeTillStart" 
+import swal from "sweetalert";
 
 function Rows(props) {
   //const [isLoaded, setIsLoaded] = useState(true);
+  console.log(`asdkaésldjaésldk !!!!!!!! ${sessionStorage.getItem("user")}`)
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
   const [reload, setReload] = useState(false);
