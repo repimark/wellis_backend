@@ -25,8 +25,8 @@ function JobDoneModal(props) {
 
   return (
     <>
-      <Button variant="outline-success" onClick={handleShow}>
-        Készre jelent.
+      <Button variant="" className="p-0" onClick={handleShow}>
+        Készre jelent
       </Button>
 
       <Modal show={show} onHide={handleClose}>

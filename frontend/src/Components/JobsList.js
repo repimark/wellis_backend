@@ -36,7 +36,7 @@ const JobsList = (props) => {
           <Tab eventKey="active" title="Aktív">
             <Table
               style={{ width: "85vw" }}
-              striped
+              
               bordered
               hover
               size="sm"
@@ -74,7 +74,7 @@ const JobsList = (props) => {
           <Tab eventKey="done" title="Kész">
             <Table
               style={{ width: "85vw" }}
-              striped
+              
               bordered
               hover
               size="sm"

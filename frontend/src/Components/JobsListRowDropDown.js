@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import AddCommentModal from "./Modals/AddCommentModal";
 import JobDoneModal from "./Modals/JobDoneModal";
+import EditModal from "./Modals/EditModal";
 
 function JobsListRowDropDown({refreshFunction, id ,comment}) {
   const [show, setShow] = useState(false);
@@ -83,7 +84,7 @@ function JobsListRowDropDown({refreshFunction, id ,comment}) {
               Törlés
             </Dropdown.Item>
             <Dropdown.Item>
-              Szerkesztés
+              <EditModal jobId={id} />
             </Dropdown.Item>
             <Dropdown.Item onClick={() => undoJob(id)}>
               Visszavonás

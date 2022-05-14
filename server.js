@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const passwordHash = require("password-hash");
 const session = require("express-session");
 const cors = require("cors");
+const { query } = require("express");
 const db = mysql.createConnection({
   host: "localhost",
   user: "node_user",
@@ -123,6 +124,14 @@ app.get("/jobs/find", (req, res) => {
     res.set("Access-Control-Allow-Origin", "*");
     res.status(200).json(results);
   });
+});
+app.post("/jobs/find/1", (req, res) => {
+  let id = req.body.jobId
+  console.log(id)
+  let sql = `SELECT * FROM jobs WHERE id = ${id}`
+  db.query(sql, (err, results) => {
+    err ? res.status(400).json(err) : res.status(200).json(results)
+  })
 });
 app.post("/unit/add", (req, res) => {
   console.log(`${req}`);
@@ -277,6 +286,48 @@ app.post("/check/user", (req, res) => {
     err ? res.status(400).json(err) : res.status(200).json(result);
   });
 });
+app.post("/user/delete", (req,res) => {
+  let sql = `DELETE FROM users WHERE id = ${req.body.userId}`
+  db.query(sql, (err, result) => {
+    err ? res.status(400).json(err) : res.status(200).json(result) 
+  })
+});
+app.post("/user/activate", (req,res) => {
+  let sql = `UPDATE users SET verified = 1 WHERE id = ${req.body.userId}`
+  db.query(sql, (err, result) => {
+    err ? res.status(400).json(err) : res.status(200).json(result) 
+  })
+});
+app.post("/user/deactivate", (req,res) => {
+  let sql = `UPDATE users SET verified = 0 WHERE id = ${req.body.userId}`
+  db.query(sql, (err, result) => {
+    err ? res.status(400).json(err) : res.status(200).json(result) 
+  })
+});
+app.post("/user/admin/activate", (req,res) => {
+  let sql = `UPDATE users SET isAdmin = 1 WHERE id = ${req.body.userId}`
+  db.query(sql, (err, result) => {
+    err ? res.status(400).json(err) : res.status(200).json(result) 
+  })
+});
+app.post("/user/admin/deactivate", (req,res) => {
+  let sql = `UPDATE users SET isAdmin = 0 WHERE id = ${req.body.userId}`
+  db.query(sql, (err, result) => {
+    err ? res.status(400).json(err) : res.status(200).json(result) 
+  })
+});
+app.get("/error", (req,res) => {
+  let sql = "SELECT * FROM errors"
+  db.query(sql, (err, result) => {
+    err ? res.status(400).json(err) : res.status(200).json(result)
+  })
+})
+app.post("/error/add", (req, res) => {
+  let sql = `INSERT INTO errors (id, description, date, state) VALUES (NULL, '${req.body.description}', '${req.body.date}', '${req.body.state}')`
+  db.query(sql, (err, result) => {
+    err ? res.status(400).json(err) : res.status(200).json(result)
+  })
+})
 app.post("/register", (req, res) => {
   let sql = `INSERT INTO users (id, username, password, isAdmin, email, verified) VALUES (NULL, '${
     req.body.username
@@ -316,6 +367,23 @@ app.post("/login", (req, res) => {
     console.log(e)
   }
 });
+
+
+// ANALITICS CHARTS ETC
+//Állapot szerinti darabszám
+app.get("/chart/1", (req,res) => {
+  let sql = "SELECT COUNT(jobName) pc, jobStatus FROM `jobs` GROUP BY jobStatus"
+  db.query(sql, (err,result) => {
+    err ? res.status(400).json(err) : res.status(200).json(result)
+  })
+})
+app.get("/chart/2", (req, res) => {
+  let sql = "SELECT COUNT(jobName) pc , YEAR(endDate) year, MONTH(endDate) month FROM `jobs` WHERE jobStatus = 1 GROUP BY YEAR(endDate), MONTH(endDate) ORDER BY YEAR(endDate), MONTH(endDate)"
+  db.query(sql, (err,result) => {
+    err ? res.status(400).json(err) : res.status(200).json(result)
+  })
+})
+
 
 app.listen(2233, () => {
   console.log("server started");

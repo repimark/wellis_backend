@@ -19,6 +19,7 @@ import Layout from "./Components/Layout";
 import Queries from "./Queries";
 import ChangePassword from "./Components/User/UI/ChangePassword";
 import ManageUsers from "./Components/User/UI/ManageUsers";
+import ErrorHandling from "./Components/ErrorHandling/ErrorHandling";
 
 function App() {
   //ReactSession.set("username", "repimark");
@@ -81,6 +82,14 @@ function App() {
                     <ManageUsers>
                       <Menu />
                     </ManageUsers>
+                  }
+                />
+                <Route
+                  path="errors"
+                  element={
+                    <ErrorHandling>
+                      <Menu />
+                    </ErrorHandling>
                   }
                 />
               </Route>

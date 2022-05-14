@@ -49,7 +49,7 @@ let userFilter = jobs.filter((job) => {
   return job.createdBy.indexOf(query) > -1
 })
 let firstfilter = userFilter.filter((job) => {
-    return job.jobStatus == `${stat}`
+    return job.jobStatus == stat
 })
 let filteredData = firstfilter.filter((job) => {
     return (
@@ -63,12 +63,12 @@ let filteredData = firstfilter.filter((job) => {
 
 let allJobs = filteredData.map((job, i) => (
     <>
-      <tr key={job.id}>
-        <td>{i + 1}</td>
+      <tr key={job.id} >
+        <td className={TimeTillStart(job.startDate) > 30 ? TimeTillStart(job.startDate) > 45 ? "bg-danger" : "bg-warning" : ""}>{i + 1}</td>
         <td>{job.jobName}</td>
         <td>{job.unit}</td>
-        <td>{job.startDate}</td>
-        <td>{TimeTillStart(job.startDate)}</td>
+        <td >{job.startDate}</td>
+        <td>{job.endDate}</td>
         <td>
           {job.jobStatus === 0
             ? "Aktív"
