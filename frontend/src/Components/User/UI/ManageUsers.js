@@ -14,8 +14,8 @@ const ManageUsers = (props) => {
   return (
     <>
       {props.children}
-      <Container>
-        <h1>Felhasználók kezelése</h1>
+      <Container fluid>
+        <h1 style={{color: "white", paddingBottom: "20px"}}>Felhasználók kezelése</h1>
         <Table style={{color: "white"}}>
           <thead>
             <tr>

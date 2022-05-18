@@ -15,12 +15,13 @@ import { ReactSession } from "react-client-session";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setSession } from "../Controllers/Session";
 import useAuth from "../../Hooks/useAuth";
+import RubberBand from "react-reveal/RubberBand"
 
 const Login = () => {
   const { setAuth } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state.from.pathname || "/";
+  // const location = useLocation();
+  // const from = "/";
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -35,11 +36,10 @@ const Login = () => {
   };
   return (
     <>
-      <Container>
-        <h1 style={{ color: "white" }}>Hello, this is the login page!</h1>
-        <Stack gap={0} direction="horizontal">
-          <div className="" style={{ backgroundColor: "whitesmoke" }}>
-            <Form style={{ width: "40vw", height: "50vh" }}>
+      <Container fluid className="m-0 p-0 b-0" style={{width: "100vw!important", height:"100vh!important", backgroundImage: `url("https://i.ytimg.com/vi/ZwGBYGA6sx4/maxresdefault.jpg")`, backgroundRepeat: "no-repeat", backgroundPosition: "Right" }}>
+          <div className="" style={{ backgroundColor: `rgba(200,200,200,0.8)`, width: "45vw", height: "100vh" }}>
+            <RubberBand>
+            <Form style={{ width: "40vw", height: "50vh", paddingTop: "70px", paddingLeft:"25px"}}>
               <h2>Bejelentkezés</h2>
               <FloatingLabel label="Felhasználónév" className="mb-3">
                 <Form.Control
@@ -55,11 +55,8 @@ const Login = () => {
               </FloatingLabel>
               <Button onClick={(e) => LoginHandler()}>Bejelentkezés</Button>
             </Form>
+            </RubberBand>
           </div>
-          <div className="" style={{ width: "40vw", color: "white" }}>
-            <h2>Helloka</h2>
-          </div>
-        </Stack>
       </Container>
     </>
   );

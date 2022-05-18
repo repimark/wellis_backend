@@ -8,7 +8,8 @@ import { ReactSession } from "react-client-session";
 import ActiveJobs from "./DataComponent/ActiveJobs";
 import DoneJobs from "./DataComponent/DoneJobs";
 import swal from "sweetalert";
-import { propTypes } from "react-bootstrap/esm/Image";
+import Slide from "react-reveal/Slide"
+import Flip from "react-reveal/Flip"
 
 const Main = (props) => {
   const [users, setUsers] = useState([]);
@@ -21,6 +22,7 @@ const Main = (props) => {
   let listOfusers = users.map((user) => (
     <>
     <Col>
+      <Flip left>
       <Card style={{ width: "18rem" }}>
         <Card.Img variant="top" src={logo} />
         <Card.Body>
@@ -36,6 +38,7 @@ const Main = (props) => {
           </Button>
         </Card.Body>
       </Card>
+      </Flip>
       </Col>
     </>
   ));

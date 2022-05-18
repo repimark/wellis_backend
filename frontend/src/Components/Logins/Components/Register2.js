@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Form, FloatingLabel, FormControl, Button } from "react-bootstrap";
 import swal from "sweetalert";
+import Jello from "react-reveal/Jello";
+import Zoom from "react-reveal/Zoom";
+import RubberBand from "react-reveal/RubberBand"
 import {
   checkPasswords,
   checkUser,
@@ -34,26 +37,29 @@ const Register2 = () => {
       >
         <div className="container-fluid" style={{ color: "white" }}>
           <div className="row">
-            <div className="col-sm-6 text-black">
+            <div className="col-sm-7 text-black">
               <div className="px-5 ms-xl-4" style={{ color: "white" }}>
                 <i
                   className="fas fa-crow fa-2x me-3 pt-5 mt-xl-4"
                   style={{ color: "#709085" }}
                 ></i>
-                <span className="h1 fw-bold mb-0">Wellis Cicatábla</span>
+
               </div>
 
               <div
                 className="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5"
                 style={{ color: "white" }}
               >
+                <RubberBand>
                 <Form className="" style={{ width: "40rem", color: "black" }}>
-                  <h3
+                 
+                 <h3
                     className="fw-normal mb-3 pb-3"
                     style={{ letterSpacing: "1px", color: "white" }}
                   >
                     Regisztráció
                   </h3>
+                 
 
                   <div className="form-outline mb-4" style={{}}>
                     <FloatingLabel label="Felhasználónév" className="mb-3">
@@ -108,9 +114,10 @@ const Register2 = () => {
                     </Button>
                   </div>
                 </Form>
+                </RubberBand>
               </div>
             </div>
-            <div className="col-sm-6 px-0 d-none d-sm-block">
+            <div className="col-sm-5 px-0 d-none d-sm-block">
               <img
                 src="https://st.depositphotos.com/1053746/4787/i/950/depositphotos_47872419-stock-photo-sculpture-of-adam-and-eve.jpg"
                 alt="Login image"

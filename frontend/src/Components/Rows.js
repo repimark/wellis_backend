@@ -1,24 +1,16 @@
-import { set } from "express/lib/application";
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import JobsListRowDropDown from "./JobsListRowDropDown";
 import { useLocation } from 'react-router-dom';
 import { TimeTillStart } from "./DataComponent/TimeTillStart" 
-import swal from "sweetalert";
 
 function Rows(props) {
-  //const [isLoaded, setIsLoaded] = useState(true);
-  console.log(`asdkaésldjaésldk !!!!!!!! ${sessionStorage.getItem("user")}`)
+
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
   const [reload, setReload] = useState(false);
   let stat = `${props.status}`
-  // const getData = () => {
-  //   fetch("http://localhost:2233/jobs")
-  //   .then((res) => res.json())
-  //   .then((response) => setJobs(response))
-  // }
-
+  
   const getData = async () => {
     const response = await fetch("http://localhost:2233/jobs")
     const data = await response.json()
@@ -64,7 +56,7 @@ let filteredData = firstfilter.filter((job) => {
 let allJobs = filteredData.map((job, i) => (
     <>
       <tr key={job.id} >
-        <td className={TimeTillStart(job.startDate) > 30 ? TimeTillStart(job.startDate) > 45 ? "bg-danger" : "bg-warning" : ""}>{i + 1}</td>
+        <td className={TimeTillStart(job.startDate) > 30 && job.jobStatus === 0 ? TimeTillStart(job.startDate) > 45 && job.jobStatus === 0 ? "bg-danger" : "bg-warning" : ""}>{i + 1}</td>
         <td>{job.jobName}</td>
         <td>{job.unit}</td>
         <td >{job.startDate}</td>
