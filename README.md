@@ -90,3 +90,9 @@ Megfelelő filterezés kereső mezőben pl.: end:2021; start:2020
 - Új szervezeti egység gomb padding 0px !
 # SOK SIKERT KÖCSÖG :joy:
 - Legyen egy kimutatás minden ember profiljába arról, hogy hány napja megy a keresés (oszlop diagram)
+
+
+# TODO
+- Amikor betöltenek egy keresést akkor kérje a belépés napját is. 
+- Keresés indításától mennyi idő telt el a betöltésig. 
+- Szervezeti egységenkénti átlag !! 
