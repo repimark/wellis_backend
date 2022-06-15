@@ -3,6 +3,7 @@ import { Form } from "react-bootstrap";
 import JobsListRowDropDown from "./JobsListRowDropDown";
 import { useLocation } from 'react-router-dom';
 import { TimeTillStart } from "./DataComponent/TimeTillStart" 
+// import { ExcelExport } from '../API/ExcelExport';
 
 function Rows(props) {
 
@@ -11,6 +12,13 @@ function Rows(props) {
   const [reload, setReload] = useState(false);
   let stat = `${props.status}`
   
+  const _export = React.useRef(null);
+
+  const excelExport = () => {
+    if (_export.current !== null) {
+      _export.current.save();
+    }
+  };
   const getData = async () => {
     const response = await fetch("http://localhost:2233/jobs")
     const data = await response.json()
@@ -80,6 +88,10 @@ let allJobs = filteredData.map((job, i) => (
         <td colSpan="8" key="1">
             <Form.Control onChange={e => setSearch(e.target.value)}></Form.Control>
         </td>
+    </tr>
+    <tr key={-100}>
+      <td>00</td>
+      {/* <td><Button onClick={() => ExcelExport(allJobs)}>Button</Button></td> */}
     </tr>
     {allJobs}
     </>

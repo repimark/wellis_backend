@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form, Table } from "react-bootstrap";
 import axios from "axios";
 import swal from "sweetalert";
+import party from "party-js";
 
 function JobDoneModal(props) {
   const [show, setShow] = useState(false);
@@ -9,9 +10,13 @@ function JobDoneModal(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const jobDone = () => {
+  const jobDone = (runButton) => {
     //Itt kell posttal küldeni az api felé a létrehozást !
     //console.log(`Unitname: ${unitName}`)
+    party.confetti(runButton, {
+      count: party.variation.range(20, 40),
+      size: party.variation.range(1.5 , 2)
+    });
     let unit = { jobId: props.jobId, comment: comment };
     axios
       .post("http://localhost:2233/jobs/done", unit)
@@ -43,7 +48,7 @@ function JobDoneModal(props) {
           <Button variant="outline-danger" onClick={handleClose}>
             Mégsem
           </Button>
-          <Button variant="success" onClick={() => jobDone()}>
+          <Button variant="success" onClick={(e) => jobDone(e.target)}>
             Készre jelent
           </Button>
         </Modal.Footer>

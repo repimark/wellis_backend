@@ -11,13 +11,13 @@ const Pivot = (props) => {
   return (
     <>
       {props.children}
-      <div style={{ color: "whitesmoke" }}>
-        <h1>Kimutatások</h1>
+      <div className="container fluid" style={{ color: "whitesmoke" }}>
+        <p className="p-3 display-1" >Kimutatások</p>
         <JobsByDateAndCreator />
-        <h3>
+        <h4>
           Aktuális hónap aktív kereséseinek kilistázása plusz adott
           évben lezárt keresések összesen.
-        </h3>
+        </h4>
         <ActiveAndClosedByTheMonth/>
         <h2>Területenkénti keresések</h2>
         <Stack

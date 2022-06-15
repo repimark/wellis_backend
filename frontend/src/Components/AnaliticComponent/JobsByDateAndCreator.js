@@ -40,7 +40,7 @@ const JobsByDateAndCreator = () => {
   return (
     <>
       <h3>A kiválasztott hónap aktív keresései</h3>
-      <Stack direction="horizontal">
+      <Stack direction="horizontal" className="p-5" style={{}}>
         <Container>
           <DatePicker
             dateFormat="yyyy-MM-dd"
