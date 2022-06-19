@@ -4,7 +4,7 @@
   "description": "backend for wellis ",
   "main": "server.js",
   "scripts": {
-    "test": "nodemon server.js"
+    "test": "node server.js"
   },
   "repository": {
     "type": "git",
