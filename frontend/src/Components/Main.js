@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
-
-import MainPage from "./Main/MainPage";
-import Menu from "./Main/Navbar";
 import { Container, Card, Button, Row, Col } from "react-bootstrap";
 import logo from "../logo.svg";
-import { ReactSession } from "react-client-session";
 import ActiveJobs from "./DataComponent/ActiveJobs";
 import DoneJobs from "./DataComponent/DoneJobs";
 import swal from "sweetalert";
-import Slide from "react-reveal/Slide"
 import Flip from "react-reveal/Flip"
+import axios from "../API/axios"
 
 const Main = (props) => {
   const [users, setUsers] = useState([]);
   const getUsers = () => {
-    fetch("http://localhost:2233/users")
+    axios.get("/users")
       .then((response) => response.json())
       .then((data) => setUsers(data))
       .catch((err) => swal(`A következő hiba történt! : ${err}`));
