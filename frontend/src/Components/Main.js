@@ -4,7 +4,7 @@ import logo from "../logo.svg";
 import ActiveJobs from "./DataComponent/ActiveJobs";
 import DoneJobs from "./DataComponent/DoneJobs";
 import swal from "sweetalert";
-import Flip from "react-reveal/Flip"
+
 import axios from "../API/axios"
 
 const Main = (props) => {
@@ -18,7 +18,7 @@ const Main = (props) => {
   let listOfusers = users.map((user) => (
     <>
     <Col>
-      <Flip left>
+      
       <Card style={{ width: "18rem" }}>
         <Card.Img variant="top" src={logo} />
         <Card.Body>
@@ -34,7 +34,7 @@ const Main = (props) => {
           </Button>
         </Card.Body>
       </Card>
-      </Flip>
+      
       </Col>
     </>
   ));

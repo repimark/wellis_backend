@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Form, FloatingLabel, FormControl, Button } from "react-bootstrap";
 import swal from "sweetalert";
-import Jello from "react-reveal/Jello";
-import Zoom from "react-reveal/Zoom";
-import RubberBand from "react-reveal/RubberBand"
 import {
   checkPasswords,
   checkUser,
@@ -50,7 +47,7 @@ const Register2 = () => {
                 className="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5"
                 style={{ color: "white" }}
               >
-                <RubberBand>
+                
                 <Form className="" style={{ width: "40rem", color: "black" }}>
                  
                  <h3
@@ -114,7 +111,7 @@ const Register2 = () => {
                     </Button>
                   </div>
                 </Form>
-                </RubberBand>
+                
               </div>
             </div>
             <div className="col-sm-5 px-0 d-none d-sm-block">
