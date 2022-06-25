@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Table } from "react-bootstrap";
-import axios from "axios";
+import axios from "../../API/axios";
 import swal from "sweetalert";
 function NewUnitModal() {
   const [show, setShow] = useState(false);
@@ -14,7 +14,7 @@ function NewUnitModal() {
     //console.log(`Unitname: ${unitName}`)
     let unit = { name: unitName };
     axios
-      .post("http://localhost:2233/units/add", unit)
+      .post("units/add", unit)
       .then(() => {
         setShow(false);
         //swal()
@@ -22,7 +22,7 @@ function NewUnitModal() {
       .catch((err) => swal(`A következő hiba történt! : ${err}`));
   };
   const getUnits = () => {
-    fetch("http://localhost:2233/units")
+    fetch("units")
       .then((res) => res.json())
       .then((data) => setUnits(data))
       .catch((err) => swal(`A következő hiba történt! : ${err}`));

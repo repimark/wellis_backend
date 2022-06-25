@@ -7,7 +7,7 @@ import {
   OverlayTrigger,
   Tooltip
 } from "react-bootstrap";
-import axios from "axios";
+import axios from "../../API/axios";
 import swal from "sweetalert";
 function AddCommentModal(props) {
   const [show, setShow] = useState(false);
@@ -21,7 +21,7 @@ function AddCommentModal(props) {
     //console.log(`Unitname: ${unitName}`)
     //console.log(`${comment}, ${props.id}`)
     let data = { jobComment: comment, jobId: props.id };
-    axios.post("http://localhost:2233/jobs/comment", data).then(() => {
+    axios.post("jobs/comment", data).then(() => {
       setShow(false);
       swal(
         "Megjegyzés hozzáadva",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Badge, ListGroup } from "react-bootstrap";
-import axios from "axios";
+import axios from "../../API/axios";
 
 const ActiveAndClosedByTheMonth = () => {
   let currentDate = new Date();
@@ -9,7 +9,7 @@ const ActiveAndClosedByTheMonth = () => {
   const getData = () => {
     let content = { date: currentDate.toISOString().split("T")[0] };
     axios
-      .post("http://localhost:2233/analitics/by/month", content)
+      .post("analitics/by/month", content)
       .then((res) => setData(res.data));
   };
   useEffect(() => {

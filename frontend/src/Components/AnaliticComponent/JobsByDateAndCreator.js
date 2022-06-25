@@ -10,14 +10,14 @@ import {
   Stack,
   ListGroupItem,
 } from "react-bootstrap";
-import axios from "axios";
+import axios from "../../API/axios";
 
 const JobsByDateAndCreator = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [data, setData] = useState([]);
   const getData = () => {
     axios
-      .post("http://localhost:2233/analitics/by/date", { date: startDate })
+      .post("analitics/by/date", { date: startDate })
       .then((res) => {
         setData(res.data);
       });

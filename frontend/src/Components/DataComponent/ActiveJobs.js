@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../API/axios";
 import React, { useState, useEffect } from "react";
 
 const ActiveJobs = (props) => {
@@ -6,7 +6,7 @@ const ActiveJobs = (props) => {
   const getActiveJobs = () => {
       console.log(props.user)
     axios
-      .post("http://localhost:2233/jobs/analitics/jobs/active", {
+      .post("jobs/analitics/jobs/active", {
         creator: props.user,
       })
       .then((res) => { setActiveJobs(res.data[0])})

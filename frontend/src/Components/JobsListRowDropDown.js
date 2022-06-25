@@ -11,7 +11,7 @@ import {
   Tooltip,
   Form,
 } from "react-bootstrap";
-import axios from "axios";
+import axios from "../API/axios";
 import AddCommentModal from "./Modals/AddCommentModal";
 import JobDoneModal from "./Modals/JobDoneModal";
 import EditModal from "./Modals/EditModal";
@@ -29,7 +29,7 @@ function JobsListRowDropDown({refreshFunction, id ,comment}) {
   const addComment = (event, id) => {
     console.log(commentText + " | " + id);
     //Itt kell meghívni a comment felülíró részt !
-    axios.post('http://localhost:2233/jobs/comment', {jobId: id, jobComment: commentText}).then(() => swal("Done //TODO!!!").catch((err) => swal(`A következő hiba történt! : ${err}`)))
+    axios.post('jobs/comment', {jobId: id, jobComment: commentText}).then(() => swal("Done //TODO!!!").catch((err) => swal(`A következő hiba történt! : ${err}`)))
     setShow(!show);
   };
   const deleteRow = (id) => {
@@ -46,7 +46,7 @@ function JobsListRowDropDown({refreshFunction, id ,comment}) {
         });
         console.log(`törölni kívánt id : ${id}`);
         axios
-          .post("http://localhost:2233/jobs/del", { jobId: id })
+          .post("jobs/del", { jobId: id })
           .then((res) => console.log(`RESPONSE : ${res.data}`))
           .then(() => refreshFunction(true));
           //props.refreshFunction()
@@ -62,7 +62,7 @@ function JobsListRowDropDown({refreshFunction, id ,comment}) {
   };
   const undoJob = (id) => {
     console.log(`Visszavonni kívánt keresés : ${id}`)
-    axios.post("http://localhost:2233/jobs/undo", {"jobId": id}).then(() => {swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); refreshFunction();}).catch((err) => swal(`A következő hiba történt! : ${err}`))
+    axios.post("jobs/undo", {"jobId": id}).then(() => {swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); refreshFunction();}).catch((err) => swal(`A következő hiba történt! : ${err}`))
   }
   return (
     <>

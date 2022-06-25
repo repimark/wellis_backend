@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Table } from "react-bootstrap";
-import axios from "axios";
+import axios from "../../API/axios";
 import swal from "sweetalert";
 import party from "party-js";
 
@@ -19,7 +19,7 @@ function JobDoneModal(props) {
     });
     let unit = { jobId: props.jobId, comment: comment };
     axios
-      .post("http://localhost:2233/jobs/done", unit)
+      .post("jobs/done", unit)
       .then(() => {
         setShow(false);
         swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success");

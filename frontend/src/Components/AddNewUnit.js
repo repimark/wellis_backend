@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../API/axios";
 import { Button, Form, Control } from "react-bootstrap";
 import swal from "sweetalert";
 
@@ -13,7 +13,7 @@ const AddNewUnit = () => {
     if (unitName) {
       try {
         axios
-          .post("http://localhost:2233/addunit", { name: unitName })
+          .post("addunit", { name: unitName })
           .then((res) => {
             res.status === 200 ? console.log("ok") : console.log("error");
             swal({

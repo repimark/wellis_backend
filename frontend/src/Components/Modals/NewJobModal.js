@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../API/axios";
 import React, { useState } from "react";
 import { Modal, Button, Form, FloatingLabel } from "react-bootstrap";
 import { ReactSession } from "react-client-session";
@@ -36,7 +36,7 @@ function NewJobModal() {
       createdBy: user,
       comment: ""
     };
-    axios.post("http://localhost:2233/jobs/add", job).then(() => alert("Done"));
+    axios.post("jobs/add", job).then(() => alert("Done"));
     setShow(false);
   };
 
