@@ -45,7 +45,7 @@ const Units = () => {
       try {
         await axios.get("/units")
           .then((res) => {
-            res.json();
+            res.data;
             //console.log(res.body)
           })
           .then((data) => {

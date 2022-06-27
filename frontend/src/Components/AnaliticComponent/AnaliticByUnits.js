@@ -10,7 +10,7 @@ const AnaliticByUnits = () => {
 
   const getAnalitics = () => {
     axios.get("/analitics/1")
-      .then((res) => res.json())
+      .then((res) => res.data)
       .then((data) => {
         setResult(data)
       }).catch((err) => swal(`A következő hiba történt! : ${err}`));

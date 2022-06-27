@@ -8,7 +8,7 @@ const UndoedJobsPcByUnit = () => {
 
   const getData = () => {
     axios.get("/analitics/4")
-      .then((res) => res.json())
+      .then((res) => res.data)
       .then((data) => {
         setData(data);
       })

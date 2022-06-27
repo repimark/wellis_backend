@@ -8,7 +8,7 @@ const DoneJobsPcByUnit = () => {
 
   const getData = () => {
     axios.get("/analitics/3")
-      .then((res) => res.json())
+      .then((res) => res.data)
       .then((data) => {
         setData(data);
       })
