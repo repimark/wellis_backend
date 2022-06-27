@@ -6,7 +6,7 @@ const ActiveJobsPcByUnit = () => {
   const [data, setData] = useState([]);
 
   const getData = () => {
-    fetch("/analitics/2")
+    axios.get("/analitics/2")
       .then((res) => res.json())
       .then((data) => {
         setData(data);

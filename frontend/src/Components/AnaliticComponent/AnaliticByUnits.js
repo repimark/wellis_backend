@@ -8,7 +8,7 @@ const AnaliticByUnits = () => {
   const [undo, setUndo] = useState([{}]);
 
   const getAnalitics = () => {
-    fetch("/analitics/1")
+    axios.get("/analitics/1")
       .then((res) => res.json())
       .then((data) => {
         setResult(data)

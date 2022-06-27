@@ -40,9 +40,9 @@ const Units = () => {
     { id: 32, name: "asdasd" },
   ]);
   useEffect(() => {
-    const fetchData = async () => {
+    const axios.getData = async () => {
       try {
-        await fetch("/units")
+        await axios.get("/units")
           .then((res) => {
             res.json();
             //console.log(res.body)
@@ -54,7 +54,7 @@ const Units = () => {
         console.log(err);
       }
     };
-    fetchData();
+    axios.getData();
   }, []);
 
   const listOfUnits = units.map((unit) => {

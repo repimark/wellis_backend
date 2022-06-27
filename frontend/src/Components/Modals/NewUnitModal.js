@@ -22,7 +22,7 @@ function NewUnitModal() {
       .catch((err) => swal(`A következő hiba történt! : ${err}`));
   };
   const getUnits = () => {
-    fetch("units")
+    axios.get("units")
       .then((res) => res.json())
       .then((data) => setUnits(data))
       .catch((err) => swal(`A következő hiba történt! : ${err}`));

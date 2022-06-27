@@ -20,7 +20,7 @@ function Rows(props) {
     }
   };
   const getData = async () => {
-    const response = await fetch("http://localhost:2233/jobs")
+    const response = await axios.get("http://localhost:2233/jobs")
     const data = await response.json()
 
     const transformedData = data.map((d) => {

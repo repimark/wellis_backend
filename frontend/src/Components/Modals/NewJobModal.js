@@ -2,7 +2,7 @@ import axios from "../../API/axios";
 import React, { useState } from "react";
 import { Modal, Button, Form, FloatingLabel } from "react-bootstrap";
 import { ReactSession } from "react-client-session";
-import FetchUnits from "../../Data/API/FetchUnits";
+import axios.getUnits from "../../Data/API/axios.getUnits";
 import AddJob from "../AddJob";
 
 function NewJobModal() {
@@ -63,7 +63,7 @@ function NewJobModal() {
               placeholder="Szervezeti egység"
               onChange={(e) => setUnit(e.target.value)}
             >
-              <FetchUnits />
+              <axios.getUnits />
             </Form.Select>
           </FloatingLabel>
 

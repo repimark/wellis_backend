@@ -6,7 +6,7 @@ const DoneJobsPcByUnit = () => {
   const [data, setData] = useState([]);
 
   const getData = () => {
-    fetch("/analitics/3")
+    axios.get("/analitics/3")
       .then((res) => res.json())
       .then((data) => {
         setData(data);

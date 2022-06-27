@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import swal from "sweetalert"
 
-function FetchUnits() {
+function axios.getUnits() {
   const [units, setUnits] = useState([]);
   useEffect(() => {
-    fetch("/units")
+    axios.get("/units")
       .then((response) => response.json())
       .then((res) => setUnits(res))
       .catch((err) => swal(`A következő hiba történt! : ${err}`));
@@ -20,4 +20,4 @@ function FetchUnits() {
     </>
   );
 }
-export default FetchUnits;
+export default axios.getUnits;

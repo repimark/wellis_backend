@@ -1,6 +1,6 @@
-// const fetchJobs = async () => {
+// const axios.getJobs = async () => {
 //   try {
-//     await fetch("/jobs")
+//     await axios.get("/jobs")
 //       .then((res) => res.json())
 //       .then((result) => {
 //         return result
@@ -9,4 +9,4 @@
 //     console.log(err);
 //   }
 // };
-// export default fetchJobs;
+// export default axios.getJobs;

@@ -6,7 +6,7 @@ const UndoedJobsPcByUnit = () => {
   const [data, setData] = useState([]);
 
   const getData = () => {
-    fetch("/analitics/4")
+    axios.get("/analitics/4")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
