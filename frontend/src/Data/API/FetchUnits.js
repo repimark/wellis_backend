@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import swal from "sweetalert"
 
-function axios.getUnits() {
+function FetchUnits() {
   const [units, setUnits] = useState([]);
   useEffect(() => {
     axios.get("/units")
@@ -20,4 +20,4 @@ function axios.getUnits() {
     </>
   );
 }
-export default axios.getUnits;
+export default FetchUnits;
