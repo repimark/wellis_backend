@@ -6,7 +6,7 @@ const DoneJobsPcByUnit = () => {
   const [data, setData] = useState([]);
 
   const getData = () => {
-    fetch("http://localhost:2233/analitics/3")
+    fetch("/analitics/3")
       .then((res) => res.json())
       .then((data) => {
         setData(data);

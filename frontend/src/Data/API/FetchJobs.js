@@ -1,6 +1,6 @@
 // const fetchJobs = async () => {
 //   try {
-//     await fetch("http://localhost:2233/jobs")
+//     await fetch("/jobs")
 //       .then((res) => res.json())
 //       .then((result) => {
 //         return result

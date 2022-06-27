@@ -4,7 +4,7 @@ import swal from "sweetalert"
 function FetchUnits() {
   const [units, setUnits] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:2233/units")
+    fetch("/units")
       .then((response) => response.json())
       .then((res) => setUnits(res))
       .catch((err) => swal(`A következő hiba történt! : ${err}`));

@@ -58,7 +58,7 @@ function JobsListRowDropDown({refreshFunction, id ,comment}) {
   };
   const jobDone = (id) => {
     //console.log(`készre kívánt állítani cucc : ${id}`);
-    //axios.post("http://localhost:2233/jobs/done", {"jobId": id}).then(() => {swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); refreshFunction(true);})
+    //axios.post("/jobs/done", {"jobId": id}).then(() => {swal("Sikeres!", "Sikeresen készre állítotad a keresést! ", "success"); refreshFunction(true);})
   };
   const undoJob = (id) => {
     console.log(`Visszavonni kívánt keresés : ${id}`)

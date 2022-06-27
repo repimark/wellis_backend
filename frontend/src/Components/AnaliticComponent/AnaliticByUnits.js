@@ -8,7 +8,7 @@ const AnaliticByUnits = () => {
   const [undo, setUndo] = useState([{}]);
 
   const getAnalitics = () => {
-    fetch("http://localhost:2233/analitics/1")
+    fetch("/analitics/1")
       .then((res) => res.json())
       .then((data) => {
         setResult(data)

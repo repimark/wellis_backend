@@ -37,7 +37,7 @@ function NewUnitModal() {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .post("http://localhost:2233/units/delete", { unitId: id })
+          .post("/units/delete", { unitId: id })
           .then(() => {
             swal(
               "Sikeresen törölted!",

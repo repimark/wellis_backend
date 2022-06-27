@@ -42,7 +42,7 @@ const Units = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch("http://localhost:2233/units")
+        await fetch("/units")
           .then((res) => {
             res.json();
             //console.log(res.body)
