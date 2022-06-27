@@ -2,7 +2,7 @@ import axios from "../../API/axios";
 import React, { useState } from "react";
 import { Modal, Button, Form, FloatingLabel } from "react-bootstrap";
 import { ReactSession } from "react-client-session";
-import axios.getUnits from "../../Data/API/axios.getUnits";
+import FetchUnits from "../../Data/API/FetchUnits";
 import AddJob from "../AddJob";
 import { useEffect } from "react";
 
