@@ -11,9 +11,9 @@ const Main = (props) => {
   const [users, setUsers] = useState([]);
   const getUsers = () => {
     axios.get("/users")
-      .then((response) => response.json())
+      .then((response) => response.data)
       .then((data) => setUsers(data))
-      .catch((err) => swal(`A következő hiba történt! : ${err}`));
+      .catch((err) =>  swal(`A következő hiba történt! : ${err}`));
   };
   let listOfusers = users.map((user) => (
     <>
