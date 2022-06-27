@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Badge, ListGroup } from "react-bootstrap";
 import axios from "../../API/axios";
 
+
 const ActiveAndClosedByTheMonth = () => {
   let currentDate = new Date();
   const [data, setData] = useState([]);

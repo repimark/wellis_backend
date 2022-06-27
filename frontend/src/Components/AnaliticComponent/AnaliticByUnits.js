@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import swal from "sweetalert";
+import axios from "../../API/axios"
 
 const AnaliticByUnits = () => {
   const [result, setResult] = useState([]);
