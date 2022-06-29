@@ -26,7 +26,7 @@ app.use(bodyParser.raw());
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["*"],
     methods: ["GET", "POST"],
     creditentals: true,
   })
@@ -44,8 +44,6 @@ app.use(
 );
 
 app.post("/units/add", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Origin", "*");
   let unit = { name: req.body.name };
   let sql = "INSERT INTO units SET ?";
   console.log(unit);
@@ -66,8 +64,6 @@ app.post("/units/delete", (req, res) => {
   });
 });
 app.post("/jobs/add", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Origin", "*");
   console.log(req);
   let job = {
     unitId: req.body.uid,
@@ -121,7 +117,7 @@ app.get("/jobs/find", (req, res) => {
   }
   db.query(sql, (err, results) => {
     if (err) throw err;
-    res.set("Access-Control-Allow-Origin", "*");
+    
     res.status(200).json(results);
   });
 });
@@ -135,7 +131,7 @@ app.post("/jobs/find/1", (req, res) => {
 });
 app.post("/unit/add", (req, res) => {
   console.log(`${req}`);
-  res.set("Access-Control-Allow-Origin", "*");
+  
   res.status(200).json(`${req.body.name}`);
 });
 
@@ -145,7 +141,6 @@ app.post("/jobs/del", (req, res) => {
     if (err) {
       throw err;
     }
-    res.set("Access-Control-Allow-Origin", "*");
     res.status(200).send("OK");
   });
 });
