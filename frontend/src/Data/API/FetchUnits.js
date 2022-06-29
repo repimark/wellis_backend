@@ -6,8 +6,7 @@ function FetchUnits() {
   const [units, setUnits] = useState([]);
   useEffect(() => {
     axios.get("/units")
-      .then((response) => response.json())
-      .then((res) => setUnits(res))
+      .then((res) => setUnits(res.data))
       .catch((err) => swal(`A következő hiba történt! : ${err}`));
   }, []);
   if (!units) {

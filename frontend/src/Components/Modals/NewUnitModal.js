@@ -23,8 +23,7 @@ function NewUnitModal() {
   };
   const getUnits = () => {
     axios.get("units")
-      .then((res) => res.json())
-      .then((data) => setUnits(data))
+      .then((data) => setUnits(data.data))
       .catch((err) => swal(`A következő hiba történt! : ${err}`));
   };
   const deleteUnit = (id) => {
