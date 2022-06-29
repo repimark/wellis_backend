@@ -28,7 +28,7 @@ app.use(
   cors({
     origin: ["*"],
     methods: ["GET", "POST"],
-    creditentals: true,
+    //creditentals: true,
   })
 );
 app.use(
