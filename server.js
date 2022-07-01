@@ -198,7 +198,7 @@ app.post("/jobs/analitics/jobs/done", (req, res) => {
     if (err) {
       throw err;
     }
-    res.set("Access-Control-Allow-Origin", "*");
+    
     res.status(200).json(results);
   });
 });
@@ -209,7 +209,7 @@ app.post("/jobs/analitics/jobs/active", (req, res) => {
     if (err) {
       throw err;
     }
-    res.set("Access-Control-Allow-Origin", "*");
+    
     res.status(200).json(results);
   });
 });
