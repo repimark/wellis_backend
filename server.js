@@ -4,12 +4,13 @@ const bodyParser = require("body-parser");
 const passwordHash = require("password-hash");
 const session = require("express-session");
 const cors = require("cors");
+const dotenv = require("dotenv").config();
 const { query } = require("express");
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "node_user",
-  password: "secretPass19",
-  database: "wellis",
+  host: process.env.HOSTNAME,
+  user: process.env.USERNAME,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
 });
 
 db.connect((err) => {
