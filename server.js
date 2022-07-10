@@ -29,6 +29,7 @@ app.use(
   cors({
     origin: ["*"],
     methods: ["GET", "POST"],
+    headers: {"Access-Control-Allow-Origin": "*"} ,
     //creditentals: true,
   })
 );
