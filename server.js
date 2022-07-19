@@ -27,7 +27,7 @@ app.use(bodyParser.raw());
 app.use(express.json());
 app.use(
   cors({
-    origin: ["*"],
+    origin: "*",
     methods: ["GET", "POST"],
     headers: {"Access-Control-Allow-Origin": "*"} ,
     //creditentals: true,
