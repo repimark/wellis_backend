@@ -11,7 +11,8 @@ export const LoginController = async (username, password) => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': '*',
         'Access-Control-Allow-Credentials': 'true',
-        'Origin': "http://dabas.hr.wellis.hu"
+        'Origin': "http://dabas.hr.wellis.hu",
+        'content-type': 'application/x-www-form-urlencoded' 
       }});
     return response.status === 200 ? response.data : console.log(response)
 }
