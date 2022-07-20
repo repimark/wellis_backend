@@ -8,7 +8,7 @@ export const LoginController = async (username, password) => {
         password: password
     }
     let response = await axios.post("login", userData, {headers: {
-        'Origin': '*',
+        'origin': '*',
       }});
     return response.status === 200 ? response.data : console.log(response)
 }
