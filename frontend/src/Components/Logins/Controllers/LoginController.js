@@ -9,10 +9,10 @@ export const LoginController = async (username, password) => {
     }
     let response = await axios.post("login", userData, {headers: {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
         'Access-Control-Allow-Credentials': 'true',
-        'Origin': "http://dabas.hr.wellis.hu",
-        'content-type': 'application/x-www-form-urlencoded' 
+        'Origin': "https://dabas.hr.wellis.hu",
+        'content-type': 'application/x-www-form-urlencoded'
       }});
     return response.status === 200 ? response.data : console.log(response)
 }
